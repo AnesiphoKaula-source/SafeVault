@@ -1,123 +1,176 @@
-# SafeVault
+# SafeVault – Secure Application
 
-Secure coding starter project for validating user input, preventing SQL injection with parameterized queries, and testing against common web vulnerabilities.
+## Project Overview
 
-## 📚 Documentation
+SafeVault is a secure web application developed using C# and ASP.NET Core. The project demonstrates secure coding practices, user authentication, authorization, input validation, and protection against common web application vulnerabilities.
 
-- **[TODO.md](TODO.md)** - Prioritized enhancement roadmap with 20+ security improvements
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Production deployment guide with security checklist
-- **[SECURITY_SUMMARY.md](SECURITY_SUMMARY.md)** - Security vulnerabilities identified and fixed
+The main objective is to protect user information and prevent security threats such as SQL Injection and Cross-Site Scripting (XSS).
+
+## Project Objectives
+
+- Implement secure input validation.
+- Prevent SQL Injection attacks.
+- Implement user authentication.
+- Apply Role-Based Access Control (RBAC).
+- Identify and resolve security vulnerabilities.
+- Generate and execute automated security tests.
+- Use Microsoft Copilot to assist with secure coding and debugging.
+
+## Technologies Used
+
+- C#
+- ASP.NET Core
+- SQL Server / SQLite
+- Microsoft Copilot
+- Visual Studio
+- Git and GitHub
+- NUnit / xUnit
+
+## Security Features
+
+### 1. Input Validation
+
+The application validates user input before processing it.
+
+- Checks required fields.
+- Validates username and email formats.
+- Rejects unexpected input.
+- Applies appropriate input sanitization.
+
+### 2. SQL Injection Prevention
+
+Parameterized SQL queries are used to prevent malicious input from changing database commands.
+
+All database queries should use secure parameter handling rather than direct string concatenation.
+
+### 3. Authentication
+
+The application implements secure authentication features:
+
+- User registration.
+- User login.
+- Password hashing.
+- Credential verification.
+- Protected user sessions.
+
+### 4. Authorization and RBAC
+
+Role-Based Access Control ensures that users can only access resources permitted by their assigned roles.
+
+The application supports:
+
+- Administrator access.
+- Regular user access.
+- Restricted access to protected resources.
+
+### 5. Cross-Site Scripting (XSS) Prevention
+
+The application uses input validation and output encoding to protect against malicious scripts submitted through user input.
+
+### 6. Security Testing
+
+Automated security tests are used to verify:
+
+- Input validation.
+- SQL Injection prevention.
+- XSS protection.
+- Authentication functionality.
+- Authorization permissions.
+- Role-based access restrictions.
+
+## Vulnerabilities Identified and Fixes Applied
+
+| Vulnerability | Fix Applied |
+|---|---|
+| SQL Injection | Parameterized SQL queries |
+| Cross-Site Scripting | Input handling and output encoding |
+| Weak Password Storage | Secure password hashing |
+| Unauthorized Access | Authentication checks |
+| Privilege Escalation | Role-Based Access Control |
+
+## Microsoft Copilot Assistance
+
+Microsoft Copilot was used as a development assistant throughout the project.
+
+It assisted with:
+
+1. Generating secure input validation code.
+2. Suggesting parameterized SQL queries.
+3. Implementing authentication and authorization.
+4. Developing Role-Based Access Control.
+5. Identifying potential SQL Injection and XSS vulnerabilities.
+6. Suggesting security test cases.
+7. Debugging and improving application code.
+
+Copilot-generated suggestions were reviewed and tested before implementation.
+
+## Running the Project
+
+### Prerequisites
+
+- Visual Studio.
+- .NET SDK.
+- Git.
+- Required project dependencies.
+
+### Build the application
+
+```bash
+dotnet restore
+dotnet build
+```
+
+### Run the application
+
+```bash
+dotnet run
+```
+
+Open the local URL displayed in the terminal.
+
+### Run security tests
+
+```bash
+dotnet test
+```
 
 ## Project Structure
 
-- `src/SafeVault`: Secure application logic
-  - `Helpers/`: Shared utility helpers
-  - `Security/InputValidator.cs`: Input validation and HTML sanitization
-  - `Security/PasswordHasher.cs`: PBKDF2 password hashing and verification helper
-  - `Security/LoginService.cs`: Legacy secure login helper used by unit tests
-  - `Security/JwtTokenService.cs`: JWT access/refresh token issuing and validation setup
-  - `Security/IdentitySeeder.cs`: Identity role and default user seeding
-  - `Security/AuthorizationService.cs`: Role-based authorization checks
-  - `Middleware/ContentSecurityPolicyMiddleware.cs`: CSP and security headers
-  - `Data/AuthDbContext.cs`: ASP.NET Identity + refresh token persistence
-  - `Data/UserRepository.cs`: Parameterized database query sample
-  - `Models/User.cs`: Legacy user model
-  - `Models/ApplicationUser.cs`: ASP.NET Identity user model
-  - `Models/AuthContracts.cs`: Auth request/response contracts
-- `tests/SafeVault.Tests`: NUnit security tests
-  - `TestInputValidation.cs`: XSS and input validation tests
-  - `TestParameterizedQueries.cs`: SQL injection resistance tests
-  - `TestLoginSecurity.cs`: Secure login and credential verification tests
-  - `TestIdentityAuthApi.cs`: registration/login/JWT refresh/role endpoint tests
-  - `TestSecurityHeaders.cs`: CSP and security header validation tests
-- `web/webform.html`: Secure sample web form
-- `database/database.sql`: Base user table schema
-
-## Modular Design
-
-- `Security` isolates authentication, hashing, sanitization, and validation concerns.
-- `Security` isolates authentication, hashing, sanitization, validation, and role authorization concerns.
-- `Data` contains database access logic only.
-- `Helpers` contains generic reusable utilities.
-- `Models` contains transport/domain objects used across modules.
-
-This separation keeps components focused, easier to test, and safer to evolve.
-
-## Naming Conventions
-
-- `PascalCase` for class names, public methods, and properties.
-- Verb-first method names for behavior (`ValidateAndNormalizeEmail`, `LoginUser`).
-- Clear, security-specific names for intent (`PasswordHash`, `PasswordSalt`, `ContainsPotentialXss`).
-- Test method names follow `Method_Condition_ExpectedResult` style where practical.
-
-## Documentation Conventions
-
-- Public APIs include XML documentation comments.
-- Security-critical sections include concise inline comments explaining intent.
-- Keep comments focused on *why* and constraints, not obvious syntax.
-- XML docs are generated during build via `GenerateDocumentationFile`.
-
-## Prerequisites
-
-- .NET SDK 8.0+
-
-## Build
-
-```bash
-dotnet build SafeVault.sln
+```text
+SafeVault/
+│
+├── SafeVault/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Services/
+│   ├── Security/
+│   ├── Data/
+│   └── Program.cs
+│
+├── SafeVault.Tests/
+│   ├── InputValidationTests.cs
+│   ├── SqlInjectionTests.cs
+│   ├── AuthenticationTests.cs
+│   ├── AuthorizationTests.cs
+│   └── XssTests.cs
+│
+├── README.md
+├── SECURITY_SUMMARY.md
+└── .gitignore
 ```
 
-## Run Web App
+*The folder structure should be adjusted to match the actual project files.*
 
-```bash
-dotnet dev-certs https --trust
-dotnet run --project src/SafeVault/SafeVault.csproj --urls https://localhost:7181
-```
+## Conclusion
 
-Open the MVC page:
+The SafeVault project demonstrates the importance of secure software development. Through input validation, SQL Injection prevention, authentication, authorization, RBAC, and security testing, the application aims to protect user data and improve application security.
 
-- `https://localhost:7181/`
+Microsoft Copilot supported the development and debugging process by providing suggestions for secure coding practices and vulnerability remediation.
 
-Demo credentials:
+## Author
 
-- `admin / Admin#123!` (Admin role)
-- `user / User#123!` (User role)
-- `guest / Guest#123!` (Guest role)
+SafeVault Security Project
 
-Minimal API endpoints:
+## License
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `POST /api/auth/refresh`
-- `GET /api/admin/dashboard` (Bearer token, Admin policy)
-- `GET /api/user/profile` (Bearer token, UserOrAdmin policy)
-- `GET /api/guest/welcome` (Bearer token, Guest policy)
-
-Swagger UI:
-
-- `https://localhost:7181/swagger/index.html`
-- Use `POST /api/auth/login` to obtain an access token, then click **Authorize** and paste: `Bearer <access_token>`
-
-## Run Tests
-
-```bash
-dotnet test SafeVault.sln
-```
-
-## What Is Covered
-
-- Username validation with strict allowlist (`A-Z`, `a-z`, `0-9`, `_`, `.`, `-`) and lowercase normalization
-- Email normalization and format validation
-- Content Security Policy (CSP) headers to prevent inline script execution
-- Security headers: X-Frame-Options, X-Content-Type-Options, X-XSS-Protection
-- CORS configuration with explicit origin allowlist
-- Output encoding for HTML rendering to reduce XSS risk
-- Detection and cleanup helpers for common XSS payload patterns
-- Parameterized query usage to block SQL injection payloads
-- ASP.NET Identity password hashing/salting for registered users
-- JWT bearer authentication with short-lived access tokens and refresh tokens
-- Role-based authorization rules and policies (`Admin`, `User`, `Guest`)
-- HTTPS redirection with permanent redirects, HSTS, and proxy-aware forwarded header handling
-- Auth and access event logging for login and protected endpoint usage
-- Unit tests simulating SQL injection and XSS attack scenarios
-- Unit tests validating invalid login and unauthorized role access scenarios
+This project is intended for educational purposes.
