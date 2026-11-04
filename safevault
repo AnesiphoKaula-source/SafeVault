@@ -1,0 +1,36 @@
+SafeVault/
+│
+├── SafeVault/
+│   ├── Controllers/
+│   │   ├── AccountController.cs
+│   │   └── HomeController.cs
+│   │
+│   ├── Models/
+│   │   └── User.cs
+│   │
+│   ├── Data/
+│   │   └── ApplicationDbContext.cs
+│   │
+│   ├── Services/
+│   │   └── AuthenticationService.cs
+│   │
+│   ├── Security/
+│   │   ├── InputValidator.cs
+│   │   └── AuthorizationService.cs
+│   │
+│   ├── Views/
+│   ├── Program.cs
+│   ├── appsettings.json
+│   └── SafeVault.csproj
+│
+├── SafeVault.Tests/
+│   ├── InputValidationTests.cs
+│   ├── SqlInjectionTests.cs
+│   ├── AuthenticationTests.cs
+│   ├── AuthorizationTests.cs
+│   ├── XssTests.cs
+│   └── SafeVault.Tests.csproj
+│
+├── README.md
+├── SECURITY_SUMMARY.md
+└── .gitignore
